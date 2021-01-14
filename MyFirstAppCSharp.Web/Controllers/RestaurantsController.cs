@@ -48,31 +48,36 @@ namespace MyFirstAppCSharp.Web.Controllers
         }
 
         // GET: Restaurants/Create
+     
         public IActionResult Create()
         {
-            
             return View();
         }
-
         
+
+        public void JsonToSQL(string JSONresult)
+        {
+
+        }
 
         // POST: Restaurants/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,borough,cuisine,name,restaurant_id")] Restaurant restaurant)
+        public async Task<IActionResult> Create([Bind("borough,cuisine,name,restaurant_id")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
                 //_context.Add(restaurant);
-                Restaurant newRestau = new Restaurant() { name= "ijij", borough= "dijsij", cuisine= "dsicjdij", restaurant_id= "125"};
-                string JSONresult = JsonConvert.SerializeObject(newRestau);
-                _context.Add(newRestau);
+                Restaurant restoJSON = new Restaurant() { borough = restaurant.borough, cuisine = restaurant.cuisine, name = restaurant.name, restaurant_id = restaurant.restaurant_id };
+                string JSONresult = JsonConvert.SerializeObject(restoJSON);
+                Console.WriteLine(JSONresult);
+                var req = _context.Database.ExecuteSqlRaw("INSERT INTO [dbo].[RestaurantTest] ([BulkColumn]) VALUES ("+JSONresult+")");
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(restaurant);
+            return View();
         }
         /*
         // GET: Restaurants/Edit/5
