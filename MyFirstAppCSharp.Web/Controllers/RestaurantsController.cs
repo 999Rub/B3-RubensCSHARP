@@ -60,6 +60,8 @@ namespace MyFirstAppCSharp.Web.Controllers
 
         }
 
+        //public class JSONresultt { public string Jsonresult { get; set; } }
+
         // POST: Restaurants/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -70,12 +72,16 @@ namespace MyFirstAppCSharp.Web.Controllers
             if (ModelState.IsValid)
             {
                 //_context.Add(restaurant);
-                Restaurant restoJSON = new Restaurant() { borough = restaurant.borough, cuisine = restaurant.cuisine, name = restaurant.name, restaurant_id = restaurant.restaurant_id };
-                string JSONresult = JsonConvert.SerializeObject(restoJSON);
+                Restaurant restoJSON = new Restaurant() { borough = restaurant.borough.ToString(), cuisine = restaurant.cuisine.ToString(), name = restaurant.name.ToString(), restaurant_id = restaurant.restaurant_id.ToString() };
+                  string JSONresult = JsonConvert.SerializeObject(restoJSON);
+                // string test = "{ 'ID':0,'borough':'ook','cuisine':'oko','name':'ko',"restaurant_id":"kop"}";
+
+                string query = "declare @test VARCHAR(max); set @test = '"+JSONresult+"'; INSERT INTO [dbo].[RestaurantTest] ([BulkColumn]) VALUES (@test)";
+                ViewData["JSONresult"] = JSONresult;
                 Console.WriteLine(JSONresult);
-                var req = _context.Database.ExecuteSqlRaw("INSERT INTO [dbo].[RestaurantTest] ([BulkColumn]) VALUES ("+JSONresult+")");
+                 _context.Database.ExecuteSqlRaw(query);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             return View();
         }
