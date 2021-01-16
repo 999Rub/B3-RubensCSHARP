@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using MyFirstAppCSharp.Data.Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using MyFirstAppCSharp.Web.Models;
+using System.Text;
 
-namespace MyFirstAppCSharp.Web.Data
+namespace MyFirstAppCSharp.Data.Data
 {
     public class RestaurantsContext : DbContext
     {
-        public RestaurantsContext (DbContextOptions<RestaurantsContext> options)
-            : base(options)
-        {
-        }
+        
+
 
         public DbSet<Restaurant> Restaurant { get; set; }
         private const string ConnexionString = @"server=MSI;database=B3Restaurant;trusted_connection=true;user=if4na;password=2012420";
@@ -25,7 +22,4 @@ namespace MyFirstAppCSharp.Web.Data
         }
 
     }
-   
-
 }
-

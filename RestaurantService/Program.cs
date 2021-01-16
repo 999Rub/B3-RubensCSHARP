@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RestaurantService
+namespace MyFirstAppCSharp.Service
 {
     class Program
     {

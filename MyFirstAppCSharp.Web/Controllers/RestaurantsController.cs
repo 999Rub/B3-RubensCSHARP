@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MyFirstAppCSharp.Web.Data;
+using MyFirstAppCSharp.Data.Data;
+using MyFirstAppCSharp.Data.Model;
 using MyFirstAppCSharp.Web.Models;
 using Newtonsoft.Json;
+using MyFirstAppCSharp.Service;
 
 namespace MyFirstAppCSharp.Web.Controllers
 {
@@ -24,8 +26,8 @@ namespace MyFirstAppCSharp.Web.Controllers
         // GET: Restaurants
         public async Task<IActionResult> Index()
         {
-            var result = _context.Restaurant.FromSqlRaw("SELECT JSON_VALUE(BulkColumn, '$.borough') as borough, JSON_VALUE(BulkColumn, '$.cuisine') as cuisine,JSON_VALUE(BulkColumn, '$.name') as name,  ID, JSON_VALUE(BulkColumn, '$.name') as restaurant_id FROM RestaurantTest").ToList();
-
+            RestaurantService restaurantService = new RestaurantService();
+            var result = restaurantService.Get();
             return View(result);
         }
         
@@ -60,7 +62,6 @@ namespace MyFirstAppCSharp.Web.Controllers
 
         }
 
-        //public class JSONresultt { public string Jsonresult { get; set; } }
 
         // POST: Restaurants/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

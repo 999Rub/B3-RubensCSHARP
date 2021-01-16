@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstAppCSharp.Web", "MyF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebJson", "WebJson\WebJson.csproj", "{C9B73DF5-24B4-42D4-B118-CF1AF1870D11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantService", "RestaurantService\RestaurantService.csproj", "{9448A397-95BD-437C-B001-C0950AAFA79C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstAppCSharp.Service", "RestaurantService\MyFirstAppCSharp.Service.csproj", "{9448A397-95BD-437C-B001-C0950AAFA79C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstAppCSharp.Data", "MyFirstAppCSharp.Data\MyFirstAppCSharp.Data.csproj", "{8A11B222-A59B-46C8-BD3E-E0A4B44A7507}"
 EndProject

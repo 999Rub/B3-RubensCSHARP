@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using MyFirstAppCSharp.Web.Data;
+using MyFirstAppCSharp.Data.Data;
 
 namespace MyFirstAppCSharp.Web {
     public class Startup {
@@ -25,7 +25,13 @@ namespace MyFirstAppCSharp.Web {
 
     services.AddDbContext<RestaurantsContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("RestaurantsContext")));
+
+          
         }
+
+        
+
+           
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
