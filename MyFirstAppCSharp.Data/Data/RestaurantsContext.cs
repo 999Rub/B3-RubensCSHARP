@@ -8,7 +8,10 @@ namespace MyFirstAppCSharp.Data.Data
 {
     public class RestaurantsContext : DbContext
     {
-        
+        public RestaurantsContext(DbContextOptions<RestaurantsContext> options)
+           : base(options)
+        {
+        }
 
 
         public DbSet<Restaurant> Restaurant { get; set; }

@@ -11,11 +11,25 @@ namespace MyFirstAppCSharp.Service
 {
     public class RestaurantService
     {
+        private readonly RestaurantsContext _context;
+        public RestaurantService(RestaurantsContext context)
+        {
+            _context = context;
+        }
         public IQueryable<Restaurant> Get()
         {
-            var db = new RestaurantsContext();
-            var result = db.Restaurant.Where(p => p.ID == 1);
+ 
+            var result = _context.Restaurant;
+           
+
             return result;
+        }
+
+        public void Add(Restaurant restaurant)
+        {
+            _context.Add(restaurant);
+            _context.SaveChanges();
+
         }
     }
 }

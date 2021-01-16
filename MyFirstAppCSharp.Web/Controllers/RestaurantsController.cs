@@ -26,7 +26,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         // GET: Restaurants
         public async Task<IActionResult> Index()
         {
-            RestaurantService restaurantService = new RestaurantService();
+            RestaurantService restaurantService = new RestaurantService(_context);
             var result = restaurantService.Get();
             return View(result);
         }
