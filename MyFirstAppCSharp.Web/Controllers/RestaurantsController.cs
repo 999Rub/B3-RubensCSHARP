@@ -73,12 +73,12 @@ namespace MyFirstAppCSharp.Web.Controllers
             if (ModelState.IsValid)
             {
                 RestaurantService restaurantService = new RestaurantService(_context);
-                restaurantService.AddValue(restaurant);
+                restaurantService.Add(restaurant);
                 return RedirectToAction(nameof(Index));
             }
             return View();
         }
-        /*
+        
         // GET: Restaurants/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -93,7 +93,7 @@ namespace MyFirstAppCSharp.Web.Controllers
                 return NotFound();
             }
             return View(restaurant);
-        }*/
+        }
         
         // POST: Restaurants/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
