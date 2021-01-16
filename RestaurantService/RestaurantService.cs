@@ -25,9 +25,9 @@ namespace MyFirstAppCSharp.Service
             return result;
         }
 
-        public void Add(Restaurant restaurant)
+        public void AddValue(Restaurant restaurant)
         {
-            _context.Add(restaurant);
+            _context.Restaurant.Add(restaurant);
             _context.SaveChanges();
 
         }

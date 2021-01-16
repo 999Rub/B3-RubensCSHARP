@@ -72,17 +72,9 @@ namespace MyFirstAppCSharp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_context.Add(restaurant);
-                Restaurant restoJSON = new Restaurant() { borough = restaurant.borough.ToString(), cuisine = restaurant.cuisine.ToString(), name = restaurant.name.ToString(), restaurant_id = restaurant.restaurant_id.ToString() };
-                  string JSONresult = JsonConvert.SerializeObject(restoJSON);
-                // string test = "{ 'ID':0,'borough':'ook','cuisine':'oko','name':'ko',"restaurant_id":"kop"}";
-
-                string query = "declare @test VARCHAR(max); set @test = '"+JSONresult+"'; INSERT INTO [dbo].[RestaurantTest] ([BulkColumn]) VALUES (@test)";
-                ViewData["JSONresult"] = JSONresult;
-                Console.WriteLine(JSONresult);
-                 _context.Database.ExecuteSqlRaw(query);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
+                RestaurantService restaurantService = new RestaurantService(_context);
+                restaurantService.AddValue(restaurant);
+                return RedirectToAction(nameof(Index));
             }
             return View();
         }
