@@ -23,6 +23,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         }
 
 
+
         // GET: Restaurants
         public async Task<IActionResult> Index()
         {
@@ -140,6 +141,8 @@ namespace MyFirstAppCSharp.Web.Controllers
 
             var restaurant = await _context.Restaurant
                 .FirstOrDefaultAsync(m => m.ID == id);
+            RestaurantService restaurantService = new RestaurantService(_context);
+            restaurantService.Delete(restaurant);
             if (restaurant == null)
             {
                 return NotFound();
@@ -154,8 +157,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var restaurant = await _context.Restaurant.FindAsync(id);
-            _context.Restaurant.Remove(restaurant);
-            await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Index));
         }
 

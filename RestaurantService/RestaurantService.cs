@@ -31,5 +31,11 @@ namespace MyFirstAppCSharp.Service
             _context.SaveChanges();
 
         }
+
+        public void Delete(Restaurant restaurant)
+        {
+            _context.Restaurant.Remove(restaurant);
+            _context.SaveChanges();
+        }
     }
 }
