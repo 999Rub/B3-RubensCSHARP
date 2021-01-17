@@ -14,24 +14,7 @@ namespace MyFirstAppCSharp.Data.Model
         public string Name { get; set; }
         public string Description { get; set; }
     }
-    public class Address
-    {
+    
 
-        public int ID { get; set; }
-        public string street { get; set; }
-        public string zipcode { get; set; }
-        public string City { get; set; }
-    }
-
-    public class Grade
-    {
-
-        public int ID { get; set; }
-        public string Note { get; set; }
-        public string Commentaire { get; set; }
-        public long DateLastVisite { get; set; }
-
-
-
-    }
+   
 }

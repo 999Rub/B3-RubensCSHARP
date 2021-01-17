@@ -21,15 +21,17 @@ namespace MyFirstAppCSharp.Web.Controllers
         {
             _context = context;
         }
+        
+
 
 
         // GET: Restaurants
         public async Task<IActionResult> Index()
         {
-
-              //  _context.Database.EnsureCreated();
-            
+            // _context.Database.EnsureCreated();
+            //_context.Restaurant.Include(x => x.address);
             RestaurantService restaurantService = new RestaurantService(_context);
+
             var result = restaurantService.Get();
             return View(result);
         }
@@ -41,7 +43,7 @@ namespace MyFirstAppCSharp.Web.Controllers
             {
                 return NotFound();
             }
-
+            _context.Restaurant.Include(x => x.address);
             var restaurant = await _context.Restaurant
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (restaurant == null)
@@ -71,12 +73,12 @@ namespace MyFirstAppCSharp.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,NumeroTel, Description, EmailProprio, address.street")] Restaurant restaurant)
+        public async Task<IActionResult> Create([Bind("Name,NumeroTel, Description, EmailProprio,address,  address.street")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
+                _context.Restaurant.Include(x => x.address);
                 RestaurantService restaurantService = new RestaurantService(_context);
-   
                 restaurantService.Add(restaurant);
                 return RedirectToAction(nameof(Index));
             }
@@ -100,7 +102,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,borough,cuisine,name,restaurant_id")] Restaurant restaurant)
+        public async Task<IActionResult> Edit(int id, [Bind("ID, Name,NumeroTel, Description, EmailProprio, address.street")] Restaurant restaurant)
         {
             if (id != restaurant.ID)
             {

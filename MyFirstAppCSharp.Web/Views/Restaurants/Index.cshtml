@@ -27,11 +27,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.address.street)
             </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
+
         {
         <tr>
             <td>
@@ -46,9 +48,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EmailProprio)
             </td>
-            <th>
-                @Html.DisplayNameFor(model => model.address)
-            </th>
+            <td>
+                @Html.DisplayNameFor(modelItem => item.address.street)
+            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
