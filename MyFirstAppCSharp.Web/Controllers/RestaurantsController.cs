@@ -23,10 +23,12 @@ namespace MyFirstAppCSharp.Web.Controllers
         }
 
 
-
         // GET: Restaurants
         public async Task<IActionResult> Index()
         {
+
+              //  _context.Database.EnsureCreated();
+            
             RestaurantService restaurantService = new RestaurantService(_context);
             var result = restaurantService.Get();
             return View(result);
@@ -69,11 +71,12 @@ namespace MyFirstAppCSharp.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("borough,cuisine,name,restaurant_id")] Restaurant restaurant)
+        public async Task<IActionResult> Create([Bind("Name,NumeroTel, Description, EmailProprio, address.street")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
                 RestaurantService restaurantService = new RestaurantService(_context);
+   
                 restaurantService.Add(restaurant);
                 return RedirectToAction(nameof(Index));
             }
@@ -83,10 +86,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         // GET: Restaurants/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
 
             if (id == null)
             {

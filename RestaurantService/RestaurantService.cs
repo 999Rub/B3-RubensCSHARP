@@ -12,6 +12,7 @@ namespace MyFirstAppCSharp.Service
     public class RestaurantService
     {
         private readonly RestaurantsContext _context;
+        
         public RestaurantService(RestaurantsContext context)
         {
             _context = context;

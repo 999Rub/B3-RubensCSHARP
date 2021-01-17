@@ -7,29 +7,30 @@ namespace MyFirstAppCSharp.Data.Model
     public class Restaurant
     {
         public int ID { get; set; }
-        // public Address address { get; set; }
-        public string borough { get; set; }
-        public string cuisine { get; set; }
-        // public List<Grade> grades { get; set; }
-        public string name { get; set; }
-        public string restaurant_id { get; set; }
+        public Address address { get; set; }
+        public string EmailProprio { get; set; }
+        public string NumeroTel { get; set; }
+        public List<Grade> grades { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
     public class Address
     {
 
         public int ID { get; set; }
-        public string building { get; set; }
         public string street { get; set; }
         public string zipcode { get; set; }
+        public string City { get; set; }
     }
 
     public class Grade
     {
 
         public int ID { get; set; }
-        public long date { get; set; }
-        public string grade { get; set; }
-        public int score { get; set; }
+        public string Note { get; set; }
+        public string Commentaire { get; set; }
+        public long DateLastVisite { get; set; }
+
 
 
     }
