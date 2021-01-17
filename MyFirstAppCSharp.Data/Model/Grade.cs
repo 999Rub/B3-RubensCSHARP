@@ -9,6 +9,6 @@ namespace MyFirstAppCSharp.Data.Model
         public int ID { get; set; }
         public string Note { get; set; }
         public string Commentaire { get; set; }
-        public long DateLastVisite { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         // GET: Restaurants
         public async Task<IActionResult> Index()
         {
-            // _context.Database.EnsureCreated();
+             _context.Database.EnsureCreated();
             RestaurantService restaurantService = new RestaurantService(_context);
 
             var result = restaurantService.Get();
@@ -42,7 +42,7 @@ namespace MyFirstAppCSharp.Web.Controllers
             {
                 return NotFound();
             }
-            var restaurant = await _context.Restaurant.Include(x=>x.address)
+            var restaurant = await _context.Restaurant.Include(x=>x.address).Include(y=>y.grades)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (restaurant == null)
             {
@@ -71,7 +71,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,NumeroTel, Description, EmailProprio,address,  address.street")] Restaurant restaurant)
+        public async Task<IActionResult> Create([Bind("Name,NumeroTel, Description, EmailProprio,address,  address.street, address.City, address.zipcode, grades, grades.Note")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace MyFirstAppCSharp.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID, Name,NumeroTel, Description, EmailProprio,address, address.street")] Restaurant restaurant)
+        public async Task<IActionResult> Edit(int id, [Bind("ID, Name,NumeroTel, Description, EmailProprio,address, address.street, address.City, address.zipcode, grades, grades.Note")] Restaurant restaurant)
         {
             if (id != restaurant.ID)
             {
@@ -129,7 +129,56 @@ namespace MyFirstAppCSharp.Web.Controllers
             }
             return View(restaurant);
         }
-        
+
+        // GET: Restaurants/Grades/5
+        public async Task<IActionResult> Grades(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            return View();
+        }
+
+        // POST: Restaurants/Grades/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Grades(int id,  [Bind("ID, grades,  grades.Note, grades.Commentaire, grades.Date")] Restaurant restaurant)
+        {
+            if (id != restaurant.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    RestaurantService restaurantService = new RestaurantService(_context);
+
+                    restaurantService.EditGrade(restaurant);
+                    
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!RestaurantExists(restaurant.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(restaurant);
+        }
+
+
         // GET: Restaurants/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

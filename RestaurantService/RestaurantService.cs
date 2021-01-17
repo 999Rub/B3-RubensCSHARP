@@ -20,7 +20,9 @@ namespace MyFirstAppCSharp.Service
         }
         public IQueryable<Restaurant> Get()
         {
-            var result = _context.Restaurant.Include(x=>x.address);
+            var result = _context.Restaurant.Include(x => x.address)
+                .Include(y=> y.grades);
+                                            
             return result;
         }
 
@@ -32,9 +34,12 @@ namespace MyFirstAppCSharp.Service
 
         }
 
+       
+
         public void Delete(Restaurant restaurant)
         {
-            _context.Restaurant.Include(x => x.address);
+            _context.Restaurant.Include(x => x.address)
+                .Include(y=>y.grades);
 
             _context.Restaurant.Remove(restaurant);
             _context.SaveChanges();
@@ -42,7 +47,17 @@ namespace MyFirstAppCSharp.Service
 
         public void Edit(Restaurant restaurant)
         {
-            _context.Restaurant.Include(x => x.address);
+            _context.Restaurant.Include(x => x.address)
+                .Include(y => y.grades);
+            _context.Restaurant.Update(restaurant);
+            _context.SaveChanges();
+        }
+
+        public void EditGrade(Restaurant restaurant)
+        {
+            _context.Restaurant.Include(x => x.address)
+                .Include(y => y.grades);
+            restaurant.grades.Date = DateTime.Now;
             _context.Restaurant.Update(restaurant);
             _context.SaveChanges();
         }

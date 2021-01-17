@@ -10,7 +10,7 @@ namespace MyFirstAppCSharp.Data.Model
         public Address address { get; set; }
         public string EmailProprio { get; set; }
         public string NumeroTel { get; set; }
-        public List<Grade> grades { get; set; }
+        public Grade grades { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }
