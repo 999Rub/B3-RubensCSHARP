@@ -20,8 +20,7 @@ namespace MyFirstAppCSharp.Service
         }
         public IQueryable<Restaurant> Get()
         {
-            _context.Restaurant.Include(x => x.address);
-            var result = _context.Restaurant;
+            var result = _context.Restaurant.Include(x=>x.address);
             return result;
         }
 
