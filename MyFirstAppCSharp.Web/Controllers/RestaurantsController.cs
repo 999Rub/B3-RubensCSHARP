@@ -88,12 +88,11 @@ namespace MyFirstAppCSharp.Web.Controllers
                 return NotFound();
             }
 
-            var restaurant =_context.Restaurant.FromSqlRaw("SET BulkColumn =JSON_MODIFY");
-            if (restaurant == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            return View(restaurant);
+            return View();
         }
         
         // POST: Restaurants/Edit/5
@@ -112,8 +111,8 @@ namespace MyFirstAppCSharp.Web.Controllers
             {
                 try
                 {
-                    _context.Update(restaurant);
-                    await _context.SaveChangesAsync();
+                    RestaurantService restaurantService = new RestaurantService(_context);
+                    restaurantService.Edit(restaurant);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
