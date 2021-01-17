@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstAppCSharp.Service", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstAppCSharp.Data", "MyFirstAppCSharp.Data\MyFirstAppCSharp.Data.csproj", "{8A11B222-A59B-46C8-BD3E-E0A4B44A7507}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstAppCSharp.Data.Test", "MyFirstAppCSharp.Data.Test\MyFirstAppCSharp.Data.Test.csproj", "{2D933A40-83B2-4E8F-B250-E4DE0DAE0911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstAppCSharp.Service.Test", "MyFirstAppCSharp.Service.Test\MyFirstAppCSharp.Service.Test.csproj", "{7D296DBB-2A6D-4C90-8423-1A18A7552810}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{8A11B222-A59B-46C8-BD3E-E0A4B44A7507}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A11B222-A59B-46C8-BD3E-E0A4B44A7507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A11B222-A59B-46C8-BD3E-E0A4B44A7507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D933A40-83B2-4E8F-B250-E4DE0DAE0911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D933A40-83B2-4E8F-B250-E4DE0DAE0911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D933A40-83B2-4E8F-B250-E4DE0DAE0911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D933A40-83B2-4E8F-B250-E4DE0DAE0911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D296DBB-2A6D-4C90-8423-1A18A7552810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D296DBB-2A6D-4C90-8423-1A18A7552810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D296DBB-2A6D-4C90-8423-1A18A7552810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D296DBB-2A6D-4C90-8423-1A18A7552810}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

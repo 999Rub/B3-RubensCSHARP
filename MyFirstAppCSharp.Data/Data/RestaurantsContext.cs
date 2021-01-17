@@ -13,7 +13,9 @@ namespace MyFirstAppCSharp.Data.Data
         {
         }
 
-        
+        public RestaurantsContext()
+        {
+        }
 
         public DbSet<Restaurant> Restaurant { get; set; }
         public DbSet<Grade> Grade { get; set; }
